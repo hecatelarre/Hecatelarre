@@ -1,92 +1,614 @@
+```html
 <!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Hecatelarre</title>
+
+  <title>Hecatelarre | Revista de literatura, crítica y artes</title>
 
   <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
       margin: 0;
-      font-family: Georgia, serif;
+      font-family: Georgia, "Times New Roman", serif;
       background: #faf8fc;
       color: #2d2438;
+      line-height: 1.7;
     }
+
+    /* =========================
+       ENCABEZADO
+    ========================= */
 
     header {
       background: #3A1063;
       color: white;
-      padding: 20px;
+      padding: 35px 20px 25px;
       text-align: center;
     }
 
+    header h1 {
+      margin: 0;
+      font-size: 3.2rem;
+      letter-spacing: 5px;
+      font-weight: normal;
+    }
+
+    header p {
+      margin: 8px 0 25px;
+      font-size: 1.05rem;
+      font-style: italic;
+    }
+
     nav {
-      margin-top: 10px;
+      border-top: 1px solid rgba(255,255,255,0.3);
+      padding-top: 18px;
     }
 
     nav a {
       color: white;
       text-decoration: none;
       margin: 0 15px;
+      font-size: 0.95rem;
+      transition: opacity 0.3s;
     }
+
+    nav a:hover {
+      opacity: 0.65;
+    }
+
+    /* =========================
+       PORTADA
+    ========================= */
+
+    .hero {
+      min-height: 500px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 80px 20px;
+      background:
+        linear-gradient(rgba(250,248,252,0.90), rgba(250,248,252,0.90)),
+        url("imagenes/fondo-hecatelarre.jpg") center/cover;
+    }
+
+    .hero-content {
+      max-width: 800px;
+    }
+
+    .hero h2 {
+      color: #3A1063;
+      font-size: 2.7rem;
+      font-weight: normal;
+      margin-bottom: 15px;
+    }
+
+    .hero p {
+      font-size: 1.15rem;
+      max-width: 650px;
+      margin: auto;
+    }
+
+    .hero .motto {
+      margin-top: 25px;
+      font-style: italic;
+      font-size: 1rem;
+    }
+
+    /* =========================
+       SECCIONES
+    ========================= */
 
     section {
-      padding: 50px 10%;
+      padding: 70px 10%;
+      max-width: 1200px;
+      margin: auto;
     }
 
-    h2 {
+    section h2 {
       color: #3A1063;
+      font-size: 2rem;
+      font-weight: normal;
+      text-align: center;
+      margin-bottom: 45px;
     }
+
+    /* =========================
+       NÚMEROS
+    ========================= */
+
+    .numeros-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 35px;
+    }
+
+    .numero {
+      background: white;
+      padding: 30px;
+      text-align: center;
+      box-shadow: 0 4px 18px rgba(58,16,99,0.08);
+      border-top: 5px solid #3A1063;
+    }
+
+    .numero h3 {
+      color: #3A1063;
+      font-size: 1.5rem;
+      font-weight: normal;
+      margin-top: 0;
+    }
+
+    .numero img {
+      width: 100%;
+      max-height: 380px;
+      object-fit: cover;
+      margin-bottom: 20px;
+    }
+
+    .numero p {
+      font-size: 0.98rem;
+    }
+
+    .boton {
+      display: inline-block;
+      margin-top: 15px;
+      padding: 10px 22px;
+      background: #3A1063;
+      color: white;
+      text-decoration: none;
+      transition: background 0.3s;
+    }
+
+    .boton:hover {
+      background: #5a238e;
+    }
+
+    .proximamente {
+      color: #6c6175;
+      font-style: italic;
+    }
+
+    /* =========================
+       NOTICIAS
+    ========================= */
+
+    .noticia {
+      background: white;
+      padding: 40px;
+      box-shadow: 0 4px 20px rgba(58,16,99,0.08);
+    }
+
+    .noticia h3 {
+      color: #3A1063;
+      font-size: 1.8rem;
+      font-weight: normal;
+      margin-top: 0;
+    }
+
+    .fecha {
+      color: #806d91;
+      font-size: 0.9rem;
+      font-style: italic;
+    }
+
+    .noticia p {
+      text-align: justify;
+    }
+
+    .galeria {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 15px;
+      margin-top: 30px;
+    }
+
+    .galeria img {
+      width: 100%;
+      height: 260px;
+      object-fit: cover;
+      transition: transform 0.3s;
+    }
+
+    .galeria img:hover {
+      transform: scale(1.02);
+    }
+
+    /* =========================
+       CONVOCATORIAS
+    ========================= */
+
+    .convocatoria {
+      text-align: center;
+      background: #eee8f3;
+      padding: 45px;
+    }
+
+    .convocatoria h3 {
+      color: #3A1063;
+      font-weight: normal;
+      font-size: 1.5rem;
+    }
+
+    /* =========================
+       EQUIPO
+    ========================= */
+
+    .equipo {
+      text-align: center;
+    }
+
+    .equipo p {
+      margin: 8px 0;
+    }
+
+    /* =========================
+       INSTAGRAM
+    ========================= */
+
+    .instagram {
+      text-align: center;
+      padding-top: 20px;
+    }
+
+    .instagram a {
+      color: #3A1063;
+      font-weight: bold;
+      text-decoration: none;
+    }
+
+    /* =========================
+       PIE DE PÁGINA
+    ========================= */
 
     footer {
       background: #3A1063;
       color: white;
       text-align: center;
-      padding: 20px;
+      padding: 30px 20px;
+      margin-top: 40px;
+    }
+
+    footer p {
+      margin: 5px;
+    }
+
+    /* =========================
+       RESPONSIVE
+    ========================= */
+
+    @media (max-width: 700px) {
+
+      header h1 {
+        font-size: 2.2rem;
+      }
+
+      nav a {
+        display: inline-block;
+        margin: 5px 8px;
+      }
+
+      section {
+        padding: 50px 7%;
+      }
+
+      .hero h2 {
+        font-size: 2rem;
+      }
+
+      .galeria {
+        grid-template-columns: 1fr;
+      }
+
+      .galeria img {
+        height: 300px;
+      }
+
+      .noticia {
+        padding: 25px;
+      }
     }
   </style>
 </head>
+
+
 <body>
 
-<header>
-  <h1>HECATELARRE</h1>
-  <p>Revista de literatura, crítica y artes</p>
+  <!-- =========================
+       ENCABEZADO
+  ========================= -->
 
-  <nav>
-    <a href="#inicio">Inicio</a>
-    <a href="#numeros">Números</a>
-    <a href="#convocatorias">Convocatorias</a>
-    <a href="#equipo">Equipo</a>
-  </nav>
-</header>
+  <header>
 
-<section id="inicio">
-  <h2>Bienvenidos a Hecatelarre</h2>
-  <p>
-    Hecatelarre es una revista independiente dedicada a la creación literaria,
-    la investigación académica y el diálogo entre literatura y artes visuales.
-  </p>
-</section>
+    <h1>HECATELARRE</h1>
 
-<section id="numeros">
-  <h2>Números publicados</h2>
-  <p><strong>Número 1.</strong> Centenario de Blanca Varela (Agosto 2026).</p>
-</section>
+    <p>Revista de literatura, crítica y artes</p>
 
-<section id="convocatorias">
-  <h2>Convocatorias vigentes</h2>
-  <p>Próximamente publicaremos aquí las convocatorias de Hecatelarre.</p>
-</section>
+    <nav>
+      <a href="#inicio">Inicio</a>
+      <a href="#numeros">Números</a>
+      <a href="#noticias">Noticias</a>
+      <a href="#convocatorias">Convocatorias</a>
+      <a href="#equipo">Equipo</a>
+    </nav>
 
-<section id="equipo">
-  <h2>Equipo editorial y contacto</h2>
-  <p><strong>Dirección General:</strong> Daniela Arcila Medina</p>
-  <p><strong>Correo:</strong> hecatelarre@gmail.com</p>
-</section>
+  </header>
 
-<footer>
-  Hecatelarre · Revista independiente de literatura, crítica y artes.
-</footer>
+
+  <!-- =========================
+       INICIO
+  ========================= -->
+
+  <div class="hero" id="inicio">
+
+    <div class="hero-content">
+
+      <h2>Bienvenidos a Hecatelarre</h2>
+
+      <p>
+        Hecatelarre es una revista independiente dedicada a la creación
+        literaria, la investigación académica y el diálogo entre literatura
+        y artes.
+      </p>
+
+      <p class="motto">
+        Un espacio para la creación, la crítica y la memoria.
+      </p>
+
+    </div>
+
+  </div>
+
+
+  <!-- =========================
+       NÚMEROS
+  ========================= -->
+
+  <section id="numeros">
+
+    <h2>Números</h2>
+
+    <div class="numeros-container">
+
+
+      <!-- NÚMERO 1 -->
+
+      <article class="numero">
+
+        <!--
+        CAMBIA ESTA IMAGEN POR LA PORTADA REAL.
+        Guarda la imagen en:
+        imagenes/numero-1.jpg
+        -->
+
+        <img src="imagenes/numero-1.jpg"
+             alt="Portada del Número 1 de Hecatelarre">
+
+        <h3>Número 1</h3>
+
+        <p>
+          <strong>Edición física · Agosto 2026</strong>
+        </p>
+
+        <p>
+          Nuestro primer número está dedicado al centenario de
+          Blanca Varela y reúne textos de creación, crítica y reflexión
+          en torno a la obra de la poeta peruana.
+        </p>
+
+        <p>
+          El ejemplar físico puede adquirirse escribiéndonos a través
+          de nuestro Instagram.
+        </p>
+
+        <a
+          class="boton"
+          href="https://www.instagram.com/hecatelarre/"
+          target="_blank">
+          Adquirir el número
+        </a>
+
+      </article>
+
+
+      <!-- NÚMERO 2 -->
+
+      <article class="numero">
+
+        <!--
+        Cuando tengas la portada del Número 2,
+        puedes reemplazar esta imagen.
+        -->
+
+        <img src="imagenes/numero-2.jpg"
+             alt="Número 2 de Hecatelarre">
+
+        <h3>Número 2</h3>
+
+        <p>
+          <strong>Edición virtual · Octubre 2026</strong>
+        </p>
+
+        <p class="proximamente">
+          Próximamente disponible en formato PDF.
+        </p>
+
+        <!--
+        EN OCTUBRE PUEDES ACTIVAR ESTE BOTÓN
+        ELIMINANDO LOS COMENTARIOS:
+
+        <a
+          class="boton"
+          href="numero-2.pdf"
+          target="_blank">
+          Leer el Número 2
+        </a>
+        -->
+
+      </article>
+
+    </div>
+
+  </section>
+
+
+  <!-- =========================
+       NOTICIAS
+  ========================= -->
+
+  <section id="noticias">
+
+    <h2>Noticias</h2>
+
+    <article class="noticia">
+
+      <p class="fecha">
+        Agosto 2026
+      </p>
+
+      <h3>
+        «Ese centenario existe»: Homenaje a Blanca Varela
+      </h3>
+
+      <p>
+        En el marco de las celebraciones por el centenario del nacimiento
+        de Blanca Varela, Hecatelarre participó en la organización del
+        coloquio «Ese centenario existe», un espacio dedicado a la lectura,
+        discusión y revaloración de la obra de una de las voces fundamentales
+        de la poesía peruana del siglo XX.
+      </p>
+
+      <p>
+        El encuentro reunió a investigadores, estudiantes y lectores
+        interesados en la obra de Varela para reflexionar sobre las
+        múltiples dimensiones de su escritura y sobre la vigencia de su
+        poesía en el panorama literario contemporáneo.
+      </p>
+
+      <p>
+        Para Hecatelarre, este coloquio representa también una forma de
+        reafirmar nuestro compromiso con la investigación literaria,
+        la creación y la difusión de la literatura peruana.
+      </p>
+
+
+      <!-- GALERÍA -->
+
+      <div class="galeria">
+
+        <!-- FOTO 1 -->
+
+        <img
+          src="imagenes/coloquio-1.jpg"
+          alt="Coloquio «Ese centenario existe» en homenaje a Blanca Varela">
+
+        <!-- FOTO 2 -->
+
+        <img
+          src="imagenes/coloquio-2.jpg"
+          alt="Participantes del coloquio «Ese centenario existe»">
+
+        <!-- FOTO 3 -->
+
+        <img
+          src="imagenes/coloquio-3.jpg"
+          alt="Actividad del coloquio en homenaje a Blanca Varela">
+
+      </div>
+
+    </article>
+
+  </section>
+
+
+  <!-- =========================
+       CONVOCATORIAS
+  ========================= -->
+
+  <section id="convocatorias">
+
+    <h2>Convocatorias</h2>
+
+    <div class="convocatoria">
+
+      <h3>Próximamente</h3>
+
+      <p>
+        En este espacio publicaremos las próximas convocatorias
+        de Hecatelarre para creación literaria, investigación y artes.
+      </p>
+
+    </div>
+
+  </section>
+
+
+  <!-- =========================
+       EQUIPO
+  ========================= -->
+
+  <section id="equipo">
+
+    <h2>Equipo editorial y contacto</h2>
+
+    <div class="equipo">
+
+      <p>
+        <strong>Dirección General:</strong>
+        Daniela Arcila Medina
+      </p>
+
+      <p>
+        <strong>Correo:</strong>
+        hecatelarre@gmail.com
+      </p>
+
+      <div class="instagram">
+
+        <p>
+          Síguenos y contáctanos en Instagram:
+        </p>
+
+        <p>
+          <a
+            href="https://www.instagram.com/hecatelarre/"
+            target="_blank">
+            @hecatelarre
+          </a>
+        </p>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- =========================
+       FOOTER
+  ========================= -->
+
+  <footer>
+
+    <p>
+      Hecatelarre · Revista independiente de literatura, crítica y artes.
+    </p>
+
+    <p>
+      © 2026 Hecatelarre
+    </p>
+
+  </footer>
+
 
 </body>
 </html>
+```
