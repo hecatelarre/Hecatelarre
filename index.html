@@ -326,8 +326,38 @@
       .noticia {
         padding: 25px;
       }
-    }
-  </style>
+      
+    /* ===== Galería ampliable ===== */
+
+.lightbox {
+  display: none;
+  position: fixed;
+  z-index: 9999;
+  inset: 0;
+  background: rgba(20, 10, 35, 0.92);
+  justify-content: center;
+  align-items: center;
+  cursor: zoom-out;
+  padding: 30px;
+}
+
+.lightbox img {
+  max-width: 90%;
+  max-height: 90%;
+  object-fit: contain;
+  box-shadow: 0 0 30px rgba(255,255,255,0.15);
+  border-radius: 4px;
+}
+
+.galeria img {
+  cursor: zoom-in;
+  transition: transform 0.3s ease;
+}
+
+.galeria img:hover {
+  transform: scale(1.03);
+  
+}  </style>
 </head>
 
 
@@ -518,25 +548,29 @@
         <img
           src="imagenes/coloquio-1.jpg"
           alt="Coloquio «Ese centenario existe» en homenaje a Blanca Varela">
-
+          onclick="abrirLightbox(this.src)">
+        
         <!-- FOTO 2 -->
 
         <img
           src="imagenes/coloquio-2.jpg"
           alt="Equipo de Hecatelarre en el coloquio «Ese centenario existe»">
-
+          onclick="abrirLightbox(this.src)">
+        
         <!-- FOTO 3 -->
 
         <img
           src="imagenes/coloquio-3.jpg"
           alt="Sary Mechan disertando">
+          onclick="abrirLightbox(this.src)">
         
         <!-- FOTO 4 -->
 
         <img
           src="imagenes/coloquio-4.jpg"
           alt="Manuela de Szyszlo y Daniela Arcila">
-
+          onclick="abrirLightbox(this.src)">      
+      
       </div>
 
     </article>
@@ -631,8 +665,29 @@
     </p>
 
   </footer>
+  
+<!-- Lightbox -->
+<div id="lightbox" class="lightbox" onclick="cerrarLightbox()">
+  <img id="imagenAmpliada" src="" alt="Imagen ampliada">
+</div>
 
+<script>
+  function abrirLightbox(src) {
+    document.getElementById("imagenAmpliada").src = src;
+    document.getElementById("lightbox").style.display = "flex";
+  }
 
+  function cerrarLightbox() {
+    document.getElementById("lightbox").style.display = "none";
+  }
+
+  document.addEventListener("keydown", function(e){
+    if(e.key === "Escape"){
+      cerrarLightbox();
+    }
+  });
+</script>
+  
 </body>
 </html>
 ```
